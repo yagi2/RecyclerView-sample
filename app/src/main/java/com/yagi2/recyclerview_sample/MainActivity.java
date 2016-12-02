@@ -22,6 +22,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Horizontal List
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+//        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+        // GridView
+//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
     }
 
     @Override
