@@ -30,11 +30,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
         // GridView
 //        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
 
         ArrayList<String> data = new ArrayList<>();
         data.add("うなすけ");
