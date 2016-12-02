@@ -9,13 +9,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>  {
     private LayoutInflater mInflater;
     private ArrayList<String> mData;
+    private Listener mListener;
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> data) {
+    public interface Listener {
+        void onRecyclerClicked(View v, int position);
+    }
+
+    public RecyclerViewAdapter(Context context, ArrayList<String> data, Listener listener) {
         mInflater = LayoutInflater.from(context);
         mData = data;
+        mListener = listener;
     }
 
     @Override
@@ -24,8 +30,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.textView.setText(mData.get(position));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onRecyclerClicked(view, position);
+            }
+        });
     }
 
     @Override

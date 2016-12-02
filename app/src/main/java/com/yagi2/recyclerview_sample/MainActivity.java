@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.Listener {
 
     private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mRecyclerViewAdapter;
@@ -29,8 +32,15 @@ public class MainActivity extends AppCompatActivity {
         data.add("うなすけ");
         data.add("やぎにい");
         data.add("アドベントカレンダー");
+        data.add("やっていき！");
 
-        mRecyclerViewAdapter = new RecyclerViewAdapter(this, data);
+        mRecyclerViewAdapter = new RecyclerViewAdapter(this, data, this);
         mRecyclerView.setAdapter(mRecyclerViewAdapter);
+    }
+
+    @Override
+    public void onRecyclerClicked(View v, int position) {
+        TextView textView = (TextView)v.findViewById(R.id.text);
+        Toast.makeText(this, textView.getText().toString(), Toast.LENGTH_SHORT).show();
     }
 }
